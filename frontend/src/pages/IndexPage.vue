@@ -1,34 +1,84 @@
+
 <template>
   <q-page padding>
     <div class="text-h4 q-mb-md">
       Version Control + Docker Demo (Quasar)
     </div>
 
+    <!-- Git Workflow -->
     <q-card class="q-mb-md">
       <q-card-section>
-        <div class="text-h6">Git Workflow (ตัวอย่างขั้นตอนทำงาน)</div>
+        <div class="text-h6">
+          Git Workflow (ตัวอย่างขั้นตอนทำงาน)
+        </div>
+
         <q-list bordered separator class="q-mt-sm">
-          <q-item v-for="(step, index) in gitSteps" :key="index">
+          <q-item
+            v-for="(step, index) in gitSteps"
+            :key="index"
+          >
             <q-item-section avatar>
               <q-badge>{{ index + 1 }}</q-badge>
             </q-item-section>
+
             <q-item-section>
               <q-item-label>{{ step.title }}</q-item-label>
-              <q-item-label caption>{{ step.detail }}</q-item-label>
+              <q-item-label caption>
+                {{ step.detail }}
+              </q-item-label>
             </q-item-section>
           </q-item>
         </q-list>
       </q-card-section>
     </q-card>
 
-    <q-card>
+    <!-- Docker Concepts -->
+    <q-card class="q-mb-md">
       <q-card-section>
-        <div class="text-h6">Docker Concepts (สรุปสั้น ๆ)</div>
+        <div class="text-h6">
+          Docker Concepts (สรุปสั้น ๆ)
+        </div>
+
         <q-list bordered separator class="q-mt-sm">
-          <q-item v-for="(item, index) in dockerItems" :key="index">
+          <q-item
+            v-for="(item, index) in dockerItems"
+            :key="index"
+          >
             <q-item-section>
               <q-item-label>{{ item.title }}</q-item-label>
-              <q-item-label caption>{{ item.detail }}</q-item-label>
+              <q-item-label caption>
+                {{ item.detail }}
+              </q-item-label>
+            </q-item-section>
+          </q-item>
+        </q-list>
+      </q-card-section>
+    </q-card>
+
+    <!-- Docker Quick Reference -->
+    <q-card>
+      <q-card-section>
+        <div class="text-h6">
+          Docker Quick Reference
+        </div>
+
+        <div class="text-caption text-grey">
+          รวมคำสั่ง Docker ที่ใช้บ่อย
+        </div>
+
+        <q-list bordered separator class="q-mt-sm">
+          <q-item
+            v-for="(item, index) in dockerCommands"
+            :key="index"
+          >
+            <q-item-section>
+              <q-item-label>
+                <code>{{ item.command }}</code>
+              </q-item-label>
+
+              <q-item-label caption>
+                {{ item.detail }}
+              </q-item-label>
             </q-item-section>
           </q-item>
         </q-list>
@@ -77,6 +127,29 @@ const dockerItems = [
   {
     title: 'Network',
     detail: 'ให้บริการใน Docker ติดต่อกันได้ เช่น Nginx ส่งต่อคำขอไปยัง Express',
+  },
+]
+
+const dockerCommands = [
+  {
+    command: 'docker build',
+    detail: 'ใช้สร้าง Docker Image จาก Dockerfile เมื่อต้องการสร้าง Image สำหรับแอปพลิเคชัน',
+  },
+  {
+    command: 'docker run',
+    detail: 'ใช้สร้างและเริ่มต้น Container จาก Image เมื่อต้องการเปิดแอปพลิเคชัน',
+  },
+  {
+    command: 'docker ps',
+    detail: 'ใช้ตรวจสอบ Container ที่กำลังทำงานอยู่',
+  },
+  {
+    command: 'docker compose up -d --build',
+    detail: 'ใช้ Build Image และเริ่มบริการทั้งหมดด้วย Docker Compose ในเบื้องหลัง',
+  },
+  {
+    command: 'docker compose down',
+    detail: 'ใช้หยุดและลบ Container กับ Network ที่ Docker Compose สร้างไว้',
   },
 ]
 </script>
